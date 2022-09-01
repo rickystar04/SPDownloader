@@ -1,7 +1,7 @@
 from time import sleep
 from .color import color
-interval=0.03
-def banner():
+
+def banner(interval):
     print("\n\n\n")
     print(u"{}  ██████  ██▓███  ▒█████▄  ▒█████   █     █░███▄    █  ██▓     ▒█████   ▄▄▄      ▓█████▄ ▓█████  ██▀███  ".format(color.RED));sleep(interval)
     print(  u"▒██    ▒ ▓██░  ██▒▒██    ▌▒██▒  ██▒▓█░ █ ░█░██ ▀█   █ ▓██▒    ▒██▒  ██▒▒████▄    ▒██▀ ██▌▓█   ▀ ▓██ ▒ ██▒");sleep(interval)
