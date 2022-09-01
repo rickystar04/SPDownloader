@@ -52,10 +52,6 @@ def run(playlist_id):
 		f4.write(track_album+"\n")
 
 		image_link=track["track"]["album"]["images"][0]["url"]
-		
-		#img=open("images/"+track_name+" cover.jpg", "wb")
-		#img.write(urllib.request.urlopen(image_link).read())
-		#img.close()
 	f.close()
 
 def correct(playlist_id):
