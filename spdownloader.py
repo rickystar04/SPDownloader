@@ -71,6 +71,7 @@ with open("tracks_list.txt") as file:
 		i+=1
 
 print(color.BOLD+color.RED+"\nFinished!"+color.END)
+
 title_list.close()
 artist_list.close()
 album_list.close()
