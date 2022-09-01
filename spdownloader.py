@@ -68,7 +68,11 @@ with open("tracks_list.txt") as file:
 		
 		print("\033[0;32m	[✓]"+title+" successfully downloaded\033[0m")
 		i+=1
-		
+
+title_list.close()
+artist_list.close()
+album_list.close()
+
 os.remove("tracks_title.txt")
 os.remove("tracks_list.txt")
 os.remove("tracks_artist.txt")
