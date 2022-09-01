@@ -70,6 +70,7 @@ with open("tracks_list.txt") as file:
 		print(color.GREEN+"[✓]"+color.BOLD+title+color.END+color.GREEN+" successfully downloaded\033[0m")
 		i+=1
 
+print(color.BOLD+color.RED+"\nFinished!"+color.END)
 title_list.close()
 artist_list.close()
 album_list.close()
