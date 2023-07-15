@@ -1,5 +1,7 @@
 from time import sleep
+
 from .color import color
+
 
 def banner(interval):
     print("\n\n\n")
@@ -14,4 +16,3 @@ def banner(interval):
     print(  u"      ░              ░        ░ ░      ░            ░     ░  ░    ░ ░        ░  ░   ░       ░  ░   ░     ");sleep(interval)
     print(  u"                   ░                                                              ░                       {}".format(color.END));sleep(interval)
     print("\n\n")
-                                                                                                                                      
