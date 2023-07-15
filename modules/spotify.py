@@ -87,9 +87,12 @@ def correct(playlist_id):
     for track in tracks:
         i += 1
         track_name = track["track"]["name"]
+        track_name = "".join(
+            c for c in track_name if c.isalnum() or c in (" ", ".", "_")
+        ).rstrip()
+
         image_link = track["track"]["album"]["images"][0]["url"]
 
-        img = open(f"images/{track_name} cover.jpg", "wb")
-        img.write(urllib.request.urlopen(image_link).read())
-        img.close()
+        with open(f"images/{track_name} cover.jpg", "wb") as img:
+            img.write(urllib.request.urlopen(image_link).read())
     return playlist_name

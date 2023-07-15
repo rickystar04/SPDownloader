@@ -1,14 +1,16 @@
-<https://github.com/rickystar04/SPDownload.git>
-
 # Welcome to SPDownloader 👋
 
 > SPDownloader is a tool for downloading all the tracks contained in a Spotify playlist in MP3 format
 
 ## Requirements
 
-- [Python](https://www.python.org/) 3.8+ and pip already installed and updated
+- [Python](https://www.python.org/) 3.8+ and Pip
+
+- [FFmpeg](https://www.ffmpeg.org/)
 
 - [Spotify](https://spotify.com) account
+
+[Click Here](https://youtu.be/EyIIvctDhYc) if you are on Windows and don't know how to install [FFmpeg](https://www.ffmpeg.org/)
 
 ## Installation
 
@@ -43,6 +45,10 @@ OR if you are on `Windows`
 ```python
 py spdownloader.py
 ```
+
+## Disclaimer
+
+Please note that the following method should not be considered a replacement for purchasing Spotify Premium. Its purpose is solely educational. It should be noted that this method retrieves songs from YouTube, which is why the downloaded songs may not always match the original tracks available on Spotify. Hence another reason why this is not a substitute of Spotify Premium
 
 ## 🤝 Contributing
 
