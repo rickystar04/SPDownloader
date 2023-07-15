@@ -32,70 +32,53 @@ while True:
         os.system("cls" if os.name == "nt" else "clear")
         banner(0)
 
-title_list = open("tracks_title.txt", "r")
-artist_list = open("tracks_artist.txt", "r")
-album_list = open("tracks_album.txt", "r")
 i = 0
 
-with open("tracks_list.txt") as file:
-    for line in file:
-        i += 1
+with open("tracks.json", "r") as file:
+    data = json.load(file)
+    data_length = len(data["Playlist"]) + 1
 
-        query = urllib.parse.quote(line.rstrip() + " lyrics")
+for line in data["Playlist"]:
+    i += 1
 
-        url = "https://www.youtube.com/results?search_query=" + query
+    query = urllib.parse.quote(line["list"] + " lyrics")
 
-        html = urllib.request.urlopen(url)
+    url = "https://www.youtube.com/results?search_query=" + query
 
-        link = re.findall(r"watch\?v=(\S{11})", html.read().decode())
+    html = urllib.request.urlopen(url)
 
-        url = f"https://www.youtube.com/watch?v={link[0]}"
+    link = re.findall(r"watch\?v=(\S{11})", html.read().decode())
 
-        title = title_list.readline().strip()
-        print(f"Title: {title}")
+    url = f"https://www.youtube.com/watch?v={link[0]}"
 
-        ydl_opts = {
-            "format": "mp3/bestaudio/best",
-            "outtmpl": f"/music/{playlist_name}/%(title)s.%(ext)s",
-            "postprocessors": [
-                {  # Extract audio using ffmpeg
-                    "key": "FFmpegExtractAudio",
-                    "preferredcodec": "mp3",
-                }
-            ],
-        }
-        with yt_dlp.YoutubeDL(ydl_opts) as ydl:
-            info = ydl.extract_info(url, download=False)
-            error_code = ydl.download(url)
+    title = line["title"]
+    artist = line["artist"]
+    album = line["album"]
 
-        artist = artist_list.readline().strip()
-        album = album_list.readline().strip()
+    ydl_opts = {
+        "format": "mp3/bestaudio/best",
+        "outtmpl": f"/music/{playlist_name}/{title}.%(ext)s",
+        "postprocessors": [
+            {  # Extract audio using ffmpeg
+                "key": "FFmpegExtractAudio",
+                "preferredcodec": "mp3",
+            }
+        ],
+    }
+    with yt_dlp.YoutubeDL(ydl_opts) as ydl:
+        error_code = ydl.download(url)
+    image(title, artist, album, playlist_name)
 
-        image(info["title"], title, artist, album, playlist_name)
-
-        total_songs = len(title_list.readlines()) + 1
-        print(
-            f"{color.GREEN}[✓ {i}/{total_songs}]{color.BOLD}{title}{color.END}{color.GREEN} successfully downloaded\033[0m"
-        )
+    print(
+        f"{color.GREEN}[✓ {i}/{data_length}]{color.BOLD}{title}{color.END}{color.GREEN} successfully downloaded\033[0m"
+    )
 # except Exception as err:
 # print(err)
 # print(f"{color.RED} SOMETHING HAS GONE WRONG TRY AGAIN LATER...")
 
-# TODO
-# with open("track.json", 'r') as file:
-#     data = json.load(file)
-#     for item in data["Playlist"]:
-#         item["album"]
-
 # finally:
-title_list.close()
-artist_list.close()
-album_list.close()
+# os.remove("tracks.json")
 
-os.remove("tracks_title.txt")
-os.remove("tracks_list.txt")
-os.remove("tracks_artist.txt")
-os.remove("tracks_album.txt")
 dir = "images/"
 for f in os.listdir(dir):
     os.remove(os.path.join(dir, f))

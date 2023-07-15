@@ -162,4 +162,5 @@ cython_debug/
 # Custom
 /music
 /images
-tracks_*.txt
+tracks*.txt
+tracks.json
