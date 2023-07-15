@@ -8,14 +8,14 @@ from spotipy.oauth2 import SpotifyOAuth
 from . import cred
 from .color import color
 
-scope = "playlist-read-private"
+SCOPE = "playlist-read-private"
 try:
     sp = spotipy.Spotify(
         auth_manager=SpotifyOAuth(
             client_id=cred.client_ID,
             client_secret=cred.client_SECRET,
             redirect_uri=cred.redirect_url,
-            scope=scope,
+            scope=SCOPE,
         )
     )
 
@@ -62,7 +62,7 @@ def run(playlist_id):
 
         image_link = track["track"]["album"]["images"][0]["url"]
 
-    with open("tracks.json", "w") as f:
+    with open("tracks.json", "w", encoding='UTF-8') as f:
         json.dump(json_data, f)
 
 

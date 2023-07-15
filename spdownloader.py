@@ -35,7 +35,7 @@ try:
 
     i = 0
 
-    with open("tracks.json", "r") as file:
+    with open("tracks.json", "r", encoding="UTF-8") as file:
         data = json.load(file)
         data_length = len(data["Playlist"]) + 1
 
@@ -96,9 +96,9 @@ except Exception as err:
 
 finally:
     os.remove("tracks.json")
-    dir = "images/"
-    for f in os.listdir(dir):
-        os.remove(os.path.join(dir, f))
+    DIR = "images/"
+    for f in os.listdir(DIR):
+        os.remove(os.path.join(DIR, f))
 
     print(color.BOLD + color.PURPLE + "\nFinished!" + color.END)
-    print(color.BOLD + color.PURPLE + "Check the" + color.BOLD + "music" + 'Folder' + color.END)
+    print(color.BOLD + color.PURPLE + "Check the music folder!")

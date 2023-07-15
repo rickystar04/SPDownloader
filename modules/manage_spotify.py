@@ -1,4 +1,4 @@
-import cred
+from . import cred
 
 if cred.client_ID == "" and cred.client_SECRET == "":
     print("Client ID and Client Secret not present")
