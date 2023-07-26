@@ -23,7 +23,7 @@ pip install -r requirements.txt
 
 open the `.env` file and fill it in with asked values.
 
-To get `client_ID` and `client_SECRET` you need to:
+To get `CLIENT_ID` and `CLIENT_SECRET` you need to:
 
 1. Connect to <https://developer.spotify.com/dashboard> and login.
 1. Accept the terms of service (if this is your first time logging in).

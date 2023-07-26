@@ -1,12 +1,14 @@
+from spotipy.oauth2 import SpotifyOauthError
+
 from . import cred
 
-if cred.client_ID == "" and cred.client_SECRET == "":
-    print("Client ID and Client Secret not present")
-    print("Follow the instructions in the README.md file to obtain your credentials")
-elif cred.client_ID == "":
-    print("Client ID not present")
-    print("Follow the instructions in the README.md file to obtain your credentials")
 
-elif cred.client_SECRET == "":
-    print("Client Secret not present")
-    print("Follow the instructions in the README.md file to obtain your credentials")
+def check_secrets():
+    if cred.CLIENT_ID is None and cred.CLIENT_SECRET is None:
+        raise SpotifyOauthError("Client ID and Client Secret not present")
+
+    elif cred.CLIENT_ID is None:
+        raise SpotifyOauthError("Client ID not present")
+
+    elif cred.CLIENT_SECRET is None:
+        raise SpotifyOauthError("Client Secret not present")

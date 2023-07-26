@@ -4,6 +4,6 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-client_ID = os.getenv("client_ID")
-client_SECRET = os.getenv("client_SECRET")
-redirect_url = os.getenv("redirect_url")
+CLIENT_ID = os.getenv("CLIENT_ID")
+CLIENT_SECRET = os.getenv("CLIENT_SECRET")
+REDIRECT_URI = os.getenv("REDIRECT_URI")

@@ -33,13 +33,11 @@ try:
             os.system("cls" if os.name == "nt" else "clear")
             banner(0)
 
-    i = 0
-
     with open("tracks.json", "r", encoding="UTF-8") as file:
         data = json.load(file)
         data_length = len(data["Playlist"]) + 1
 
-    def download_video(playlist_name, url, title, artist, album):
+    def download_video(playlist_name, url, title, artist, album, num):
         ydl_opts = {
             "format": "mp3/bestaudio/best",
             "outtmpl": f"/music/{playlist_name}/{title}.%(ext)s",
@@ -55,16 +53,14 @@ try:
             print(error_code)
         image(title, artist, album, playlist_name)
         print(
-            f"{color.GREEN}[✓]{color.BOLD}{title}{color.END}{color.GREEN} successfully downloaded\033[0m"
+            f"{color.GREEN}[✓]{color.BOLD} {title}{color.END}{color.GREEN} successfully downloaded\033[0m"
         )
 
     threads = []
     for line in data["Playlist"]:
-        i += 1
-
         query = urllib.parse.quote(line["list"] + " lyrics")
 
-        url = "https://www.youtube.com/results?search_query=" + query
+        url = f"https://www.youtube.com/results?search_query={query}"
 
         html = urllib.request.urlopen(url)
 
@@ -79,7 +75,6 @@ try:
         artist = line["artist"]
         album = line["album"]
 
-        download_video(playlist_name, url, title, artist, album)
         thread = threading.Thread(
             target=download_video, args=(playlist_name, url, title, artist, album)
         )

@@ -7,20 +7,26 @@ from spotipy.oauth2 import SpotifyOAuth
 
 from . import cred
 from .color import color
+from .manage_spotify import check_secrets
 
 SCOPE = "playlist-read-private"
 try:
+    check_secrets()
     sp = spotipy.Spotify(
         auth_manager=SpotifyOAuth(
-            client_id=cred.client_ID,
-            client_secret=cred.client_SECRET,
-            redirect_uri=cred.redirect_url,
+            client_id=cred.CLIENT_ID,
+            client_secret=cred.CLIENT_SECRET,
+            redirect_uri=cred.REDIRECT_URI,
             scope=SCOPE,
         )
     )
 
 except spotipy.oauth2.SpotifyOauthError as e:
-    print(f"{color.RED}Authentication error")
+    print(f"\n{e}")
+    print(
+        f"{color.RED}Follow the instructions in the README.md file to obtain your credentials"
+    )
+    exit()
 
 
 def run(playlist_id):
@@ -62,7 +68,7 @@ def run(playlist_id):
 
         image_link = track["track"]["album"]["images"][0]["url"]
 
-    with open("tracks.json", "w", encoding='UTF-8') as f:
+    with open("tracks.json", "w", encoding="UTF-8") as f:
         json.dump(json_data, f)
 
 
