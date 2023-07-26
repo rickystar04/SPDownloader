@@ -1,5 +1,7 @@
 # Welcome to SPDownloader 👋
 
+[![Python application](https://github.com/Naviamold1/SPDownloader/actions/workflows/python-app.yml/badge.svg)](https://github.com/Naviamold1/SPDownloader/actions/workflows/python-app.yml)
+
 > SPDownloader is a tool for downloading all the tracks contained in a Spotify playlist in MP3 format
 
 ## Requirements
