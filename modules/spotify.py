@@ -66,7 +66,7 @@ def run(playlist_id):
 
         json_data["Playlist"].append(item)
 
-        image_link = track["track"]["album"]["images"][0]["url"]
+        # image_link = track["track"]["album"]["images"][0]["url"]
 
     with open("tracks.json", "w", encoding="UTF-8") as f:
         json.dump(json_data, f)
