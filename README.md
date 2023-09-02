@@ -13,12 +13,17 @@ Select "Create an App" and enter any name you want
 now copy Client Id and Client Secret in cred.py file present in modules folder
 
 ## Installation
+
 run setup.py
 
 ## Usage
+
 On spotify, open the playlist you want to download, click the 3 dots and share>copy link to playlist
 python3 spdownloader.py
 
 ## Contributing
+
 Any improvements, advice or suggestions are welcome
 Contact email:rickybenincasa04@gmail.com
+
+prova123
