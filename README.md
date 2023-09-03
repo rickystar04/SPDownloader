@@ -1,4 +1,4 @@
-https://github.com/rickystar04/SPDownload.git
+https://github.com/rickystar04/SPDownloader.git
 
 # SPDownloader
 
