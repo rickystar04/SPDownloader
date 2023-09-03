@@ -4,7 +4,8 @@ https://github.com/rickystar04/SPDownload.git
 
 SPDownloader is a tool for downloading all the tracks contained in a Spotify playlist in MP3 format
 
-##requirements
+## Requirements
+
 Python and pip already installed and updated
 
 Connect to https://developer.spotify.com/dashboard/ and login
