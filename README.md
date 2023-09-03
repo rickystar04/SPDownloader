@@ -19,7 +19,7 @@ run setup.py
 
 ## Usage
 
-On spotify, open the playlist you want to download, click the 3 dots and share>copy link to playlist
+On spotify, open the playlist or album you want to download, click the 3 dots and share>copy link to playlist
 python3 spdownloader.py
 
 ## Contributing
