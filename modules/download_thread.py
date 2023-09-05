@@ -7,10 +7,19 @@ import threading
 import urllib.error
 from tqdm import tqdm
 import urllib.request
-from pytube import YouTube
 from modules.color import *
 from modules.convert import *
 from modules.metadata import *
+import yt_dlp
+
+
+yt_opts = {
+    "verbose": False,
+    "download_sections": [{"section": {"start_time": 2, "end_time": 7}}],
+}
+
+ydl = yt_dlp.YoutubeDL()
+
 
 # Creiamo il Semaphore con un limite di 10 threads contemporanei
 semaphore = threading.Semaphore(20)
@@ -24,12 +33,29 @@ def download_songs(record, filelocation, i, playlist, progress_callback):
         link = re.findall(r"watch\?v=(\S{11})", html.read().decode())
         if len(link) > 0:
             url = "https://www.youtube.com/watch?v=" + link[0]
-            yt = YouTube(url, use_oauth=True, allow_oauth_cache=False)
-            video = yt.streams.first()
+            print("URL:" + url)
+            # yt = YouTube(url)# , use_oauth=True, allow_oauth_cache=False)
+            # video = yt.streams.first()
 
-            original = video.default_filename
-            video.download(filelocation)
+            # original = video.default_filename
+            # video.download(filelocation)
+            ydl_opts = {
+                "quiet": True,
+                "no_warnings": True,
+                "format": "mp3/bestaudio/best",
+                "outtmpl": filelocation + "/" + record["titolo"] + ".%(ext)s",
+                "postprocessors": [
+                    {  # Extract audio using ffmpeg
+                        "key": "FFmpegExtractAudio",
+                        "preferredcodec": "mp3",
+                    }
+                ],
+            }
+            with yt_dlp.YoutubeDL(ydl_opts) as ydl:
+                error_code = ydl.download(url)
+                # print(error_code)
 
+            """
             os.rename(
                 os.path.join("music", playlist, original),
                 os.path.join("music", playlist, record["titolo"]),
@@ -40,7 +66,7 @@ def download_songs(record, filelocation, i, playlist, progress_callback):
                 playlist,
                 record["titolo"] + ".mp3",
             )
-
+            """
             tqdm.write(
                 color.GREEN + record["titolo"] + " downloaded successfully!" + color.END
             )
