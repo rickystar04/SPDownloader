@@ -27,19 +27,19 @@ semaphore = threading.Semaphore(20)
 
 def download_songs(record, filelocation, i, playlist, progress_callback):
     url = record["song_link"]
-    tqdm.write(f"Downloading song {i}...")
+    # tqdm.write(f"Downloading song {i}...")
     try:
         html = urllib.request.urlopen(url)
         link = re.findall(r"watch\?v=(\S{11})", html.read().decode())
         if len(link) > 0:
             url = "https://www.youtube.com/watch?v=" + link[0]
-            print("URL:" + url)
             # yt = YouTube(url)# , use_oauth=True, allow_oauth_cache=False)
             # video = yt.streams.first()
 
             # original = video.default_filename
             # video.download(filelocation)
             ydl_opts = {
+                "noprogress": True,
                 "quiet": True,
                 "no_warnings": True,
                 "format": "mp3/bestaudio/best",

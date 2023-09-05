@@ -119,11 +119,15 @@ def checkAuth():
     scope = "playlist-read-private"
     try:
         # sp = spotipy.Spotify(auth_manager=SpotifyOAuth(client_id=cred.client_ID,
-        #                                               client_secret=cred.client_SECRET, redirect_uri=cred.redirect_url, scope=scope))
+        # client_secret=cred.client_SECRET, redirect_uri=cred.redirect_url, scope=scope))
+        client_id = cred.client_ID
+        client_secret = cred.client_SECRET
+        # print("ID: " + client_id)
+        # print("SECRET: " + client_secret)
         sp = spotipy.Spotify(
             auth_manager=SpotifyOAuth(
-                client_id="ae49e6be16674c81a0ebdb8f68fcc029",
-                client_secret="e4503a68d1ee42f59595362825fc411d",
+                client_id=client_id,
+                client_secret=client_secret,
                 redirect_uri="http://localhost:9000",
                 scope=scope,
             )
@@ -144,29 +148,19 @@ def song_download(playlist_id):
             scope=scope,
         )
     )
-    print("3")
     playlist_id = playlist_id
-    print("4")
-    print(playlist_id)
     playlist_URI = playlist_id.split("/")[-1].split("?")[0]
-    print(playlist_URI)
-    print("5")
     try:
         playlist = sp.playlist(playlist_URI)
-        print("6")
         results = sp.playlist_tracks(playlist_URI)
-        print("7")
 
         return playlist_download(playlist, results)
 
     except Exception:
         try:
             album = sp.album(playlist_URI)
-            print("8")
             results = sp.album_tracks(playlist_URI)
-            print("9")
             image_link = album["images"][0]["url"]
-            print(image_link)
             return album_download(album, results, image_link)
         except Exception as e:
             print("ERRORE: " + str(e))
