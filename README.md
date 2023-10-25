@@ -4,7 +4,7 @@ SPDownloader is a Python-based tool that allows you to download all the tracks f
 
 ## Prerequisites
 
-- Python and pip installed and updated on your system.
+- Python **3.10** (minimum) and pip installed and updated on the system.
 
 ## Getting Started
 

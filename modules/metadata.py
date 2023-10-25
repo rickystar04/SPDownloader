@@ -10,7 +10,6 @@ def image(playlist_name, type):
 
     for record in records:
         title = record["titolo"]
-        print("TITOLO: " + title)
         path = "music/" + playlist_name + "/" + title + ".mp3"
         try:
             audio = eyed3.load(path)

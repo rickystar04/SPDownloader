@@ -64,7 +64,6 @@ def playlist_download(playlist, results):
     with open("records.json", "w") as file:
         json.dump(records, file, indent=4)
     file.close()
-    print("TIPO:" + type)
     return playlist_name, type
 
 

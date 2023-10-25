@@ -57,14 +57,15 @@ def start_download(playlist_name, type):
 
 
 def main():
-
-    exist = os.path.isfile(".env.example")
-    if(exist):
-        if os.name == 'nt':  # Windows
-            cmd = f'copy .env.example .env'
-        else:  # Unix/Linux
-            cmd = f'cp "{src}" "{dst}"'
-        os.system(cmd)
+    exist=os.path.isfile(".env")
+    if(not exist):
+        exist = os.path.isfile(".env.example")
+        if(exist):
+            if os.name == 'nt':  # Windows
+                cmd = f'copy .env.example .env'
+            else:  # Unix/Linux
+                cmd = f'cp "{src}" "{dst}"'
+            os.system(cmd)
     
     cycle = True
     while cycle:
@@ -82,11 +83,6 @@ def main():
             link = input("Paste playlist link: ")
 
             name, type = song_download(link)
-            if type == "playlist":
-                print("PLAYLIST: " + name)
-
-            elif type == "album":
-                print("ALBUM: " + name)
 
             cycle = False
             if input("Is this the right " + type + "?? [y/n] >>> ") == "y":
