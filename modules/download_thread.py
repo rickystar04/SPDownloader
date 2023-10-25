@@ -54,18 +54,6 @@ def download_songs(record, filelocation, i, playlist, progress_callback):
                 error_code = ydl.download(url)
                 print(error_code)
 
-            """
-            os.rename(
-                os.path.join("music", playlist, original),
-                os.path.join("music", playlist, record["titolo"]),
-            )
-
-            extract_audio(
-                os.path.join("music", playlist, record["titolo"]),
-                playlist,
-                record["titolo"] + ".mp3",
-            )
-            """
             tqdm.write(
                 color.GREEN + record["titolo"] + " downloaded successfully!" + color.END
             )

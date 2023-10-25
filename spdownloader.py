@@ -49,8 +49,7 @@ def start_download(playlist_name, type):
     print(color.BOLD + color.RED + "\nFinished!" + color.END)
     #
 
-    # TODO
-    # da rimettere:
+
     dir = "images/"
     for f in os.listdir(dir):
         os.remove(os.path.join(dir, f))
@@ -67,9 +66,6 @@ def main():
             cmd = f'cp "{src}" "{dst}"'
         os.system(cmd)
     
-    # Copy File
-   
-    
     cycle = True
     while cycle:
         
@@ -84,8 +80,6 @@ def main():
         auth = checkAuth()
         if auth:
             link = input("Paste playlist link: ")
-
-            #      playlist_id = "https://open.spotify.com/playlist/2CLuiyi6uFuRGOV2ys3IZo"
 
             name, type = song_download(link)
             if type == "playlist":

@@ -23,7 +23,6 @@ def image(playlist_name, type):
 
         with open("images/"+ title + " cover.png", "rb") as cover:
             audio.tag.images.set(3, cover.read(), "image/jpeg")
-            print("Fatto")
 
         tag = audio.tag
 
