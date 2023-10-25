@@ -59,15 +59,16 @@ def start_download(playlist_name, type):
 
 def main():
 
-    exist = os.path.isfile("modules\.env.example")
+    exist = os.path.isfile(".env.example")
     if(exist):
         if os.name == 'nt':  # Windows
-            cmd = f'copy modules\.env.example modules\.env'
+            cmd = f'copy .env.example .env'
         else:  # Unix/Linux
             cmd = f'cp "{src}" "{dst}"'
+        os.system(cmd)
     
     # Copy File
-    os.system(cmd)
+   
     
     cycle = True
     while cycle:
